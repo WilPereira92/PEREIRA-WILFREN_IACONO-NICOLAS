@@ -2,20 +2,16 @@ package com.backend.clinica_odontologica;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-@SpringBootApplication
-public class ClinicaOdontologicaApplication {
-    private static Logger LOGGER = LoggerFactory.getLogger(ClinicaOdontologicaApplication.class);
+public class Main {
+    private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(ClinicaOdontologicaApplication.class, args);
         crearTabla();
-        LOGGER.info("ClinicaOdontológica is running ...");
+        LOGGER.info("Logré crear la tabla");
     }
 
     private static void crearTabla() {
@@ -33,5 +29,4 @@ public class ClinicaOdontologicaApplication {
             }
         }
     }
-
 }
