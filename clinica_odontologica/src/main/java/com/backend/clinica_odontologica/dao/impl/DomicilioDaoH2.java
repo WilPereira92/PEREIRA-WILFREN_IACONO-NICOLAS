@@ -15,9 +15,6 @@ import java.util.List;
 public class DomicilioDaoH2 implements IDao<Domicilio> {
     private static Logger LOGGER = LoggerFactory.getLogger(DomicilioDaoH2.class);
 
-    public DomicilioDaoH2() {
-    }
-
     @Override
     public Domicilio registrar(Domicilio domicilio) {
         Connection connection = null;

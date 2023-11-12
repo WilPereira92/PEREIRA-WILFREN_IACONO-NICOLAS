@@ -1,9 +1,14 @@
 package com.backend.clinica_odontologica.controller;
 
+import com.backend.clinica_odontologica.dto.entrada.PacienteRequestDto;
+import com.backend.clinica_odontologica.dto.salida.PacienteResponseDto;
 import com.backend.clinica_odontologica.model.Paciente;
 import com.backend.clinica_odontologica.service.PacienteService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,18 +21,18 @@ public class PacienteController {
     }
 
     @PostMapping("/registrar")
-    public Paciente registrarPaciente(@RequestBody Paciente paciente) {
-        return pacienteService.registrarPaciente(paciente);
+    public ResponseEntity<PacienteResponseDto> registrarPaciente(@RequestBody @Valid PacienteRequestDto paciente) {
+        return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
     @GetMapping("/listar")
-    public List<Paciente> listarPacientes() {
-        return pacienteService.listar();
+    public ResponseEntity<List<PacienteResponseDto>> listarPacientes() {
+        return new ResponseEntity<>(pacienteService.listar(), HttpStatus.OK);
     }
 
     @GetMapping("/buscarPorId")
-    public Paciente buscarPorId(@RequestParam int id) {
-        return pacienteService.buscarPorId(id);
+    public ResponseEntity<PacienteResponseDto> buscarPorId(@RequestParam int id) {
+        return new ResponseEntity<>(pacienteService.buscarPorId(id), HttpStatus.OK);
     }
 
     @PutMapping("/actualizar")

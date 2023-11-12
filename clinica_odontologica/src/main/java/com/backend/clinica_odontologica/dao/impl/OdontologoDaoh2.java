@@ -15,6 +15,9 @@ import java.util.List;
 public class OdontologoDaoh2 implements IDao<Odontologo> {
     private static Logger LOGGER = LoggerFactory.getLogger(OdontologoDaoh2.class);
 
+    public OdontologoDaoh2() {
+    }
+
     @Override
     public Odontologo registrar(Odontologo odontologo) {
         Odontologo odontologoPersistido = null;

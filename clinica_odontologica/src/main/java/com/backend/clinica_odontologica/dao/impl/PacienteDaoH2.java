@@ -16,14 +16,6 @@ import java.util.List;
 public class PacienteDaoH2 implements IDao<Paciente> {
     private static Logger LOGGER = LoggerFactory.getLogger(PacienteDaoH2.class);
     private DomicilioDaoH2 domicilioDaoH2;
-
-    public PacienteDaoH2() {
-    }
-
-    public PacienteDaoH2(DomicilioDaoH2 domicilioDaoH2) {
-        this.domicilioDaoH2 = domicilioDaoH2;
-    }
-
     @Override
     public Paciente registrar(Paciente paciente) {
         Connection connection = null;
@@ -185,6 +177,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
     }
 
     private Paciente crearObjetoPaciente(ResultSet resultSet) throws SQLException {
+        domicilioDaoH2 = new DomicilioDaoH2();
         Domicilio domicilio = domicilioDaoH2.buscarPorId(resultSet.getInt("ID_DOMICILIO"));
         return new Paciente(resultSet.getInt("ID"), resultSet.getString("NOMBRE"), resultSet.getString("APELLIDO"), resultSet.getInt("DNI"), resultSet.getDate("FECHA_INGRESO").toLocalDate(), domicilio);
     }
