@@ -16,11 +16,23 @@ public class ClinicaOdontologicaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ClinicaOdontologicaApplication.class, args);
-        crearTabla();
         LOGGER.info("ClinicaOdontológica is running ...");
     }
 
-    private static void crearTabla() {
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+    /*
+    DROP TABLE IF EXISTS DOMICILIOS;
+CREATE TABLE DOMICILIOS (ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL, CALLE VARCHAR(250) NOT NULL, NUMERO INT NOT NULL, LOCALIDAD VARCHAR(250) NOT NULL, PROVINCIA VARCHAR(100) NOT NULL);
+
+DROP TABLE IF EXISTS PACIENTES;
+CREATE TABLE PACIENTES (ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL, NOMBRE VARCHAR(100) NOT NULL, APELLIDO VARCHAR(100) NOT NULL, DNI INT NOT NULL, FECHA_INGRESO DATE NOT NULL, ID_DOMICILIO INT NOT NULL);
+DROP TABLE IF EXISTS ODONTOLOGOS;
+CREATE TABLE ODONTOLOGOS (ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL, MATRICULA VARCHAR(100) NOT NULL, NOMBRE VARCHAR(100) NOT NULL, APELLIDO VARCHAR(100) NOT NULL);
+ private static void crearTabla() {
         Connection connection = null;
         try {
             Class.forName("org.h2.Driver");
@@ -35,10 +47,5 @@ public class ClinicaOdontologicaApplication {
             }
         }
     }
-
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-
+     */
 }

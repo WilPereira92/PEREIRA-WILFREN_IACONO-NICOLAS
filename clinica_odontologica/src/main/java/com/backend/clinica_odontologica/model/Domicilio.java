@@ -1,10 +1,20 @@
 package com.backend.clinica_odontologica.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "DOMICILIOS")
 public class Domicilio {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(length = 50)
     private String calle;
+    @Column(length = 8)
     private int numero;
+    @Column(length = 50)
     private String localidad;
+    @Column(length = 50)
     private String provincia;
 
     public Domicilio() {
@@ -17,7 +27,7 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public Domicilio(int id, String calle, int numero, String localidad, String provincia) {
+    public Domicilio(Long id, String calle, int numero, String localidad, String provincia) {
         this.id = id;
         this.calle = calle;
         this.numero = numero;
@@ -25,11 +35,11 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -63,16 +73,5 @@ public class Domicilio {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
-    }
-
-    @Override
-    public String toString() {
-        return "Domicilio{" +
-                "id=" + id +
-                ", calle='" + calle + '\'' +
-                ", numero=" + numero +
-                ", localidad='" + localidad + '\'' +
-                ", provincia='" + provincia + '\'' +
-                '}';
     }
 }

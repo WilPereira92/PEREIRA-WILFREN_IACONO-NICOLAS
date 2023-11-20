@@ -1,8 +1,8 @@
 package com.backend.clinica_odontologica.controller;
 
 import com.backend.clinica_odontologica.dto.entrada.PacienteRequestDto;
+import com.backend.clinica_odontologica.dto.entrada.modificacion.PacienteResquestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.PacienteResponseDto;
-import com.backend.clinica_odontologica.model.Paciente;
 import com.backend.clinica_odontologica.service.PacienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,19 +25,26 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
-    @GetMapping("/listar")
-    public ResponseEntity<List<PacienteResponseDto>> listarPacientes() {
-        return new ResponseEntity<>(pacienteService.listar(), HttpStatus.OK);
-    }
-
     @GetMapping("/buscarPorId")
-    public ResponseEntity<PacienteResponseDto> buscarPorId(@RequestParam int id) {
+    public ResponseEntity<PacienteResponseDto> buscarPorId(@RequestParam Long id) {
         return new ResponseEntity<>(pacienteService.buscarPorId(id), HttpStatus.OK);
     }
 
+    @GetMapping("/listar")
+    public ResponseEntity<List<PacienteResponseDto>> listarPacientes() {
+        return new ResponseEntity<>(pacienteService.listarPacientes(), HttpStatus.OK);
+    }
+
+
     @PutMapping("/actualizar")
-    public Paciente actualizarPaciente(@RequestBody Paciente paciente) {
+    public PacienteResponseDto actualizarPaciente(@RequestBody PacienteResquestUpdateDto paciente) {
         return pacienteService.actualizarPaciente(paciente);
+    }
+
+    @DeleteMapping("eliminar")
+    public ResponseEntity<?> eliminarPaciente(@RequestParam Long id) {
+        pacienteService.eliminarPaciente(id);
+        return new ResponseEntity<>("Paciente eliminado correctamente", HttpStatus.OK);
     }
 
 }

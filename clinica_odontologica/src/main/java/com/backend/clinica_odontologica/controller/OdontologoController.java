@@ -1,8 +1,8 @@
 package com.backend.clinica_odontologica.controller;
 
 import com.backend.clinica_odontologica.dto.entrada.OdontologoRequestDto;
+import com.backend.clinica_odontologica.dto.entrada.modificacion.OdontologoResquestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.OdontologoResponseDto;
-import com.backend.clinica_odontologica.model.Odontologo;
 import com.backend.clinica_odontologica.service.OdontologoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +31,19 @@ public class OdontologoController {
     }
 
     @GetMapping("/buscarPorId")
-    public ResponseEntity<OdontologoResponseDto> buscarPorId(@RequestParam int id) {
+    public ResponseEntity<OdontologoResponseDto> buscarPorId(@RequestParam Long id) {
         return new ResponseEntity<>(odontologoService.buscarPorId(id), HttpStatus.OK);
     }
 
     @PutMapping("/actualizar")
-    public Odontologo actualizarOdontologo(@RequestBody Odontologo odontologo) {
+    public OdontologoResponseDto actualizarOdontologo(@RequestBody OdontologoResquestUpdateDto odontologo) {
         return odontologoService.actualizarOdontologo(odontologo);
     }
+
+    @DeleteMapping("/eliminar")
+    public ResponseEntity<?> eliminarOdontologo(@RequestParam Long id) {
+        odontologoService.eliminarOdontologo(id);
+        return new ResponseEntity<>("Odontólogo eliminado correctamente", HttpStatus.OK);
+    }
+
 }
