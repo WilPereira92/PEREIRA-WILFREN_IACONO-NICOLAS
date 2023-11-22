@@ -1,4 +1,4 @@
-package com.backend.clinica_odontologica.service;
+package com.backend.clinica_odontologica.service.impl;
 
 
 import com.backend.clinica_odontologica.dto.entrada.OdontologoRequestDto;
@@ -6,6 +6,7 @@ import com.backend.clinica_odontologica.dto.entrada.modificacion.OdontologoResqu
 import com.backend.clinica_odontologica.dto.salida.OdontologoResponseDto;
 import com.backend.clinica_odontologica.model.Odontologo;
 import com.backend.clinica_odontologica.repository.OdontologoRepository;
+import com.backend.clinica_odontologica.service.IOdontologoService;
 import com.backend.clinica_odontologica.utils.JsonPrinter;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OdontologoService {
+public class OdontologoService implements IOdontologoService {
     private static Logger LOGGER = LoggerFactory.getLogger(OdontologoService.class);
     private OdontologoRepository odontologoRepository;
     private ModelMapper modelMapper;

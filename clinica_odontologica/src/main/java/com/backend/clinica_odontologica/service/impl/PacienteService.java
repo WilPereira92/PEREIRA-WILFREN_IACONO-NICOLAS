@@ -1,13 +1,13 @@
-package com.backend.clinica_odontologica.service;
+package com.backend.clinica_odontologica.service.impl;
 
 import com.backend.clinica_odontologica.dto.entrada.PacienteRequestDto;
 import com.backend.clinica_odontologica.dto.entrada.modificacion.PacienteResquestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.PacienteResponseDto;
 import com.backend.clinica_odontologica.model.Paciente;
 import com.backend.clinica_odontologica.repository.PacienteRepository;
+import com.backend.clinica_odontologica.service.IPacienteService;
 import com.backend.clinica_odontologica.utils.JsonPrinter;
 import org.modelmapper.ModelMapper;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PacienteService {
+public class PacienteService implements IPacienteService {
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
     private PacienteRepository pacienteRepository;
     private ModelMapper modelMapper;

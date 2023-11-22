@@ -15,20 +15,18 @@ public class TurnoRequestDto {
     private LocalDateTime fechaYHoraTurno;
     @JsonProperty("paciente")
     @NotNull(message = "El turno tiene que tener un paciente registrado")
-    @Valid
-    private PacienteRequestDto pacienteRequestDto;
+    private Long idPaciente;
     @JsonProperty("odontologo")
     @NotNull(message = "El turno tiene que tener un odontólogo registrado")
-    @Valid
-    private OdontologoRequestDto odontologoRequestDto;
+    private Long idOdontologo;
 
     public TurnoRequestDto() {
     }
 
-    public TurnoRequestDto(LocalDateTime fechaYHoraTurno, PacienteRequestDto pacienteRequestDto, OdontologoRequestDto odontologoRequestDto) {
+    public TurnoRequestDto(LocalDateTime fechaYHoraTurno, Long idPaciente, Long idOdontologo) {
         this.fechaYHoraTurno = fechaYHoraTurno;
-        this.pacienteRequestDto = pacienteRequestDto;
-        this.odontologoRequestDto = odontologoRequestDto;
+        this.idPaciente = idPaciente;
+        this.idOdontologo = idOdontologo;
     }
 
     public LocalDateTime getFechaYHoraTurno() {
@@ -39,19 +37,19 @@ public class TurnoRequestDto {
         this.fechaYHoraTurno = fechaYHoraTurno;
     }
 
-    public PacienteRequestDto getPacienteRequestDto() {
-        return pacienteRequestDto;
+    public Long getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setPacienteRequestDto(PacienteRequestDto pacienteRequestDto) {
-        this.pacienteRequestDto = pacienteRequestDto;
+    public void setIdPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public OdontologoRequestDto getOdontologoRequestDto() {
-        return odontologoRequestDto;
+    public Long getIdOdontologo() {
+        return idOdontologo;
     }
 
-    public void setOdontologoRequestDto(OdontologoRequestDto odontologoRequestDto) {
-        this.odontologoRequestDto = odontologoRequestDto;
+    public void setIdOdontologo(Long idOdontologo) {
+        this.idOdontologo = idOdontologo;
     }
 }

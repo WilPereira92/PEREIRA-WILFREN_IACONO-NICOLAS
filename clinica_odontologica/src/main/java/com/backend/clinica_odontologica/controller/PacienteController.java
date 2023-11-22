@@ -3,7 +3,8 @@ package com.backend.clinica_odontologica.controller;
 import com.backend.clinica_odontologica.dto.entrada.PacienteRequestDto;
 import com.backend.clinica_odontologica.dto.entrada.modificacion.PacienteResquestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.PacienteResponseDto;
-import com.backend.clinica_odontologica.service.PacienteService;
+import com.backend.clinica_odontologica.service.IPacienteService;
+import com.backend.clinica_odontologica.service.impl.PacienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/paciente")
 public class PacienteController {
-    private PacienteService pacienteService;
+    private IPacienteService pacienteService;
 
     public PacienteController(PacienteService pacienteService) {
         this.pacienteService = pacienteService;
