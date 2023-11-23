@@ -27,6 +27,7 @@ public class PacienteService implements IPacienteService {
         configureMapping();
     }
 
+    @Override
     public PacienteResponseDto registrarPaciente(PacienteRequestDto paciente) {
         LOGGER.info("PacienteRequestDto: " + JsonPrinter.toString(paciente));
         LOGGER.info("DomicilioRequestDto: " + JsonPrinter.toString(paciente.getDomicilioRequestDto()));
@@ -37,6 +38,7 @@ public class PacienteService implements IPacienteService {
         return pacienteResponseDto;
     }
 
+    @Override
     public List<PacienteResponseDto> listarPacientes() {
         List<PacienteResponseDto> pacientesResponseDto = new ArrayList<>();
         List<Paciente> pacientes = pacienteRepository.findAll();
@@ -48,6 +50,7 @@ public class PacienteService implements IPacienteService {
         return pacientesResponseDto;
     }
 
+    @Override
     public PacienteResponseDto buscarPorId(Long id) {
         Paciente pacienteBuscado = pacienteRepository.findById(id).orElse(null);
         PacienteResponseDto pacienteEncontrado = null;
@@ -60,6 +63,7 @@ public class PacienteService implements IPacienteService {
         return pacienteEncontrado;
     }
 
+    @Override
     public PacienteResponseDto actualizarPaciente(PacienteResquestUpdateDto paciente) {
         LOGGER.info("Paciente PacienteRequestUpdateDto: {}", JsonPrinter.toString(paciente));
         Paciente pacienteRecibido = modelMapper.map(paciente, Paciente.class);
@@ -81,6 +85,7 @@ public class PacienteService implements IPacienteService {
         return pacienteResponseDto;
     }
 
+    @Override
     public void eliminarPaciente(Long id) {
         if (pacienteRepository.findById(id).orElse(null) != null) {
             pacienteRepository.deleteById(id);
@@ -88,6 +93,11 @@ public class PacienteService implements IPacienteService {
         } else {
             LOGGER.error("No se ha encontrado el paciente con id: " + id);
         }
+    }
+
+    @Override
+    public Paciente entidadPaciente(Long id) {
+        return pacienteRepository.findById(id).orElse(null);
     }
 
     private void configureMapping() {

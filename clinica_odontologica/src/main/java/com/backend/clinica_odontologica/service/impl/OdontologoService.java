@@ -28,6 +28,7 @@ public class OdontologoService implements IOdontologoService {
         configureMapping();
     }
 
+    @Override
     public OdontologoResponseDto registrarOdontologo(OdontologoRequestDto odontologo) {
         LOGGER.info("OdontólogRequestDto: {}" + JsonPrinter.toString(odontologo));
         Odontologo odontologoEntidad = modelMapper.map(odontologo, Odontologo.class);
@@ -37,6 +38,7 @@ public class OdontologoService implements IOdontologoService {
         return odontologoResponseDto;
     }
 
+    @Override
     public List<OdontologoResponseDto> listarOdontologos() {
         List<OdontologoResponseDto> odontologosResponseDto = new ArrayList<>();
         List<Odontologo> odontologos = odontologoRepository.findAll();
@@ -48,6 +50,7 @@ public class OdontologoService implements IOdontologoService {
         return odontologosResponseDto;
     }
 
+    @Override
     public OdontologoResponseDto buscarPorId(Long id) {
         Odontologo odontologo = odontologoRepository.findById(id).orElse(null);
         OdontologoResponseDto odontologoResponseDto = null;
@@ -59,6 +62,7 @@ public class OdontologoService implements IOdontologoService {
         return odontologoResponseDto;
     }
 
+    @Override
     public OdontologoResponseDto actualizarOdontologo(OdontologoResquestUpdateDto odontologo) {
         LOGGER.info("Odontólogo a actualizarRequestUpdateDto: {}", JsonPrinter.toString(odontologo));
         Odontologo odontologoUpdate = modelMapper.map(odontologo, Odontologo.class);
@@ -76,13 +80,19 @@ public class OdontologoService implements IOdontologoService {
         return odontologoResponseDto;
     }
 
+    @Override
     public void eliminarOdontologo(Long id) {
-        if (odontologoRepository.findById(id) != null) {
+        if (odontologoRepository.findById(id).orElse(null) != null) {
             odontologoRepository.deleteById(id);
             LOGGER.warn("Se eliminó el odontólogo con el id " + id);
         } else {
             LOGGER.error("No se ha encontrado el odontólogo con el id: " + id);
         }
+    }
+
+    @Override
+    public Odontologo entidadOdontologo(Long id) {
+        return odontologoRepository.findById(id).orElse(null);
     }
 
     public void configureMapping() {

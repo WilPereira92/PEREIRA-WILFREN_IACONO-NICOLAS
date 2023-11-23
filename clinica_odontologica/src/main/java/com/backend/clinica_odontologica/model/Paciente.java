@@ -2,7 +2,6 @@ package com.backend.clinica_odontologica.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "PACIENTES")

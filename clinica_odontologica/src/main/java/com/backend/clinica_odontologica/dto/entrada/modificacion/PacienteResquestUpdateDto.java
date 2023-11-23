@@ -1,15 +1,11 @@
 package com.backend.clinica_odontologica.dto.entrada.modificacion;
 
-import com.backend.clinica_odontologica.dto.entrada.DomicilioRequestDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.Valid;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -29,7 +25,7 @@ public class PacienteResquestUpdateDto {
     private String apellido;
 
     @NotNull(message = "El dni del paciente no puede ser nulo")
-    @Size(max = 12, message = "El nombre debe tener hasta 12 digitos")
+    @Digits(integer = 8, fraction = 0, message = "El dni debe tener como máximo 8 dígitos")
     private Integer dni;
 
     @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")

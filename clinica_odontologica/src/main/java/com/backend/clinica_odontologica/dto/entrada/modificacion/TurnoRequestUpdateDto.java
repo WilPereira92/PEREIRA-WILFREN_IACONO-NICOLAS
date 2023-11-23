@@ -1,6 +1,7 @@
 package com.backend.clinica_odontologica.dto.entrada.modificacion;
 
-import javax.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -9,23 +10,22 @@ public class TurnoRequestUpdateDto {
     @NotNull(message = "Debe proveerse el id del turno que desea modificar")
     private Long id;
     @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
+    @JsonProperty("fecha_turno")
     @NotNull(message = "Debe especificarse la fecha del turno")
     private LocalDateTime fechaYHoraTurno;
     @NotNull(message = "El turno tiene que tener un paciente registrado")
-    @Valid
-    private PacienteResquestUpdateDto pacienteResquestUpdateDto;
+    private Long paciente_id;
     @NotNull(message = "El turno tiene que tener un odontólogo registrado")
-    @Valid
-    private OdontologoResquestUpdateDto odontologoResquestUpdateDto;
+    private Long odontologo_id;
 
     public TurnoRequestUpdateDto() {
     }
 
-    public TurnoRequestUpdateDto(Long id, LocalDateTime fechaYHoraTurno, PacienteResquestUpdateDto pacienteResquestUpdateDto, OdontologoResquestUpdateDto odontologoResquestUpdateDto) {
+    public TurnoRequestUpdateDto(Long id, LocalDateTime fechaYHoraTurno, Long paciente_id, Long odontologo_id) {
         this.id = id;
         this.fechaYHoraTurno = fechaYHoraTurno;
-        this.pacienteResquestUpdateDto = pacienteResquestUpdateDto;
-        this.odontologoResquestUpdateDto = odontologoResquestUpdateDto;
+        this.paciente_id = paciente_id;
+        this.odontologo_id = odontologo_id;
     }
 
     public Long getId() {
@@ -44,19 +44,19 @@ public class TurnoRequestUpdateDto {
         this.fechaYHoraTurno = fechaYHoraTurno;
     }
 
-    public PacienteResquestUpdateDto getPacienteResquestUpdateDto() {
-        return pacienteResquestUpdateDto;
+    public Long getPaciente_id() {
+        return paciente_id;
     }
 
-    public void setPacienteResquestUpdateDto(PacienteResquestUpdateDto pacienteResquestUpdateDto) {
-        this.pacienteResquestUpdateDto = pacienteResquestUpdateDto;
+    public void setPaciente_id(Long paciente_id) {
+        this.paciente_id = paciente_id;
     }
 
-    public OdontologoResquestUpdateDto getOdontologoResquestUpdateDto() {
-        return odontologoResquestUpdateDto;
+    public Long getOdontologo_id() {
+        return odontologo_id;
     }
 
-    public void setOdontologoResquestUpdateDto(OdontologoResquestUpdateDto odontologoResquestUpdateDto) {
-        this.odontologoResquestUpdateDto = odontologoResquestUpdateDto;
+    public void setOdontologo_id(Long odontologo_id) {
+        this.odontologo_id = odontologo_id;
     }
 }

@@ -38,7 +38,7 @@ public class PacienteController {
 
 
     @PutMapping("/actualizar")
-    public PacienteResponseDto actualizarPaciente(@RequestBody PacienteResquestUpdateDto paciente) {
+    public PacienteResponseDto actualizarPaciente(@RequestBody @Valid PacienteResquestUpdateDto paciente) {
         return pacienteService.actualizarPaciente(paciente);
     }
 

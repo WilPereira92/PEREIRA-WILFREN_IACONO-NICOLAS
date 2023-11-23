@@ -1,9 +1,9 @@
 package com.backend.clinica_odontologica.controller;
 
 import com.backend.clinica_odontologica.dto.entrada.TurnoRequestDto;
+import com.backend.clinica_odontologica.dto.entrada.modificacion.TurnoRequestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.TurnoResponseDto;
 import com.backend.clinica_odontologica.service.ITurnoService;
-import com.backend.clinica_odontologica.service.impl.TurnoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +16,32 @@ import java.util.List;
 public class TurnoController {
     private ITurnoService turnoService;
 
-    public TurnoController(TurnoService turnoService) {
+    public TurnoController(ITurnoService turnoService) {
         this.turnoService = turnoService;
     }
+
     @PostMapping("/registrar")
-    public ResponseEntity<TurnoResponseDto> registrarTurno(@RequestBody @Valid TurnoRequestDto turnoRequestDto){
+    public ResponseEntity<TurnoResponseDto> registrarTurno(@RequestBody @Valid TurnoRequestDto turnoRequestDto) {
         return new ResponseEntity<>(turnoService.registrarTurno(turnoRequestDto), HttpStatus.CREATED);
     }
+
     @GetMapping("/listar")
-    public ResponseEntity<List<TurnoResponseDto>> listarTodos(){
-        return new ResponseEntity<>(turnoService.listarTurnos(),HttpStatus.OK);
+    public ResponseEntity<List<TurnoResponseDto>> listarTodos() {
+        return new ResponseEntity<>(turnoService.listarTurnos(), HttpStatus.OK);
+    }
+
+    @PutMapping("/actualizar")
+    public TurnoResponseDto actualizarTurno(@RequestBody @Valid TurnoRequestUpdateDto turno) {
+        return turnoService.actualizarTurno(turno);
+    }
+
+    @DeleteMapping("/eliminar")
+    public ResponseEntity<?> eliminarTurno(@RequestParam Long id) {
+        turnoService.eliminarTurno(id);
+        return new ResponseEntity<>("Turno eliminado correctamente", HttpStatus.OK);
+    }
+    @GetMapping("/buscarPorId")
+    public ResponseEntity<TurnoResponseDto> buscarPorId(@RequestParam Long id){
+        return new ResponseEntity<>(turnoService.buscarPorId(id), HttpStatus.OK);
     }
 }

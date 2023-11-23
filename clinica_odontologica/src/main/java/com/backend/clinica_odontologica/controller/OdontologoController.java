@@ -37,7 +37,7 @@ public class OdontologoController {
     }
 
     @PutMapping("/actualizar")
-    public OdontologoResponseDto actualizarOdontologo(@RequestBody OdontologoResquestUpdateDto odontologo) {
+    public OdontologoResponseDto actualizarOdontologo(@RequestBody @Valid OdontologoResquestUpdateDto odontologo) {
         return odontologoService.actualizarOdontologo(odontologo);
     }
 
