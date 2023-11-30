@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&family=Poppins:wght@300;600&family=Roboto:wght@400;700&display=swap&family=Lato');
+* {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(0, 0, 66);
+    font-weight: 600;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+/*HEADER*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0rem;
+    border-bottom: 4px double rgba(128, 128, 128, 0.4);
+    margin: 0rem 3.5rem;
+    h1 {
+        cursor: pointer;
+    }
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    gap: 5rem;
+    li {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        cursor: pointer;
+    }
+}
+
+main {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p {
+        padding: 1rem;
+        text-decoration: underline;
+        font-size: 24px;
+    }
+}
+.inyectar-odontologos {
+    font-size: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+}
+#total-odontologos {
+    padding: 1rem;
+}
+
+
+/*FOOTER*/
+footer {
+    margin-left: 3.5rem;
+    opacity: 0.7;
+}

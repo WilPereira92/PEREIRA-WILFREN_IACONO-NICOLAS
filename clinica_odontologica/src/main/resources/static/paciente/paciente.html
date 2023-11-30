@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalCare - Registro Paciente</title>
+    <link rel="stylesheet" href="./asserts/paciente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1>DentalCare</h1>
+        <nav>
+            <ul>
+                <li><i class="fa-solid fa-house"></i> <p>Home</p></li>
+                <li><i class="fa-solid fa-location-dot"></i> <p>Dirección</p></li>
+                <li> <i class="fas fa-envelope"></i> <p>Contacto</p></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-container">
+            <p>Registrar Paciente</p>
+            <form action="#" method="POST">
+                <div>
+
+                    <fieldset class="paciente">
+                        <legend>Información personal</legend>
+                        <section>
+                            <label for="NOMBRE">Nombre</label>
+                            <input type="text" id="NOMBRE" name="NOMBRE" placeholder="INGRESA TU NOMBRE">
+                            <small class="invisible" id="error-nombre">Nombre inválido</small>
+                        </section>
+                        <section>
+                            <label for="APELLIDO">Apellido</label>
+                            <input type="text" id="APELLIDO" name="APELLIDO" placeholder="INGRESA TU APELLIDO">
+                            <small class="invisible" id="error-apellido">Apellido inválido</small>
+                        </section>
+                        <section>
+                            <label for="DNI">DNI</label>
+                            <input type="number" id="DNI" name="DNI" placeholder="INGRESA TU DNI">
+                            <small class="invisible" id="error-dni">DNI inválido</small>
+                        </section> 
+                    </fieldset>
+                    <fieldset class="domicilio">
+        
+                        <legend>Domicilio</legend>
+                        <section>
+                            <label for="CALLE">Calle</label>
+                            <input type="text" id="CALLE" name="CALLE" placeholder="INGRESA TU CALLE">
+                            <small class="invisible" id="error-calle">Calle inválida</small>
+                        </section>
+        
+                        <section>
+                            <label for="NUMERO">Número</label>
+                            <input type="number" id="NUMERO" name="NUMERO" placeholder="INGRESA TU NUMERO">
+                            <small class="invisible" id="error-numero">Numero inválido</small>
+                        </section>
+        
+                        <section>
+        
+                            <label for="LOCALIDAD">Localidad</label>
+                            <input type="text" id="LOCALIDAD" name="LOCALIDAD" placeholder="INGRESA TU LOCALIDAD">
+                            <small class="invisible" id="error-localidad">Localidad inválida</small>
+                        </section>
+        
+                        <section>
+                            <label for="PROVINCIA">Provincia</label>
+                            <input type="text" id="PROVINCIA" name="PROVINCIA" placeholder="INGRESA TU PROVINCIA">
+                            <small class="invisible" id="error-provincia">Provincia inválida</small>
+                        </section>
+        
+                    </fieldset>
+                </div>
+                <input type="submit" value="Registrar" id="submit-paciente">
+            </form>
+        </div>
+        <p id="volver">VOLVER</p>
+    </main>
+
+    <footer>
+        <p>COPYRIGHT Wilfren Pereira - Nicolas Iacono @2023</p>
+    </footer>
+    <script src="./asserts/paciente.js"></script>
+</body>
+</html>

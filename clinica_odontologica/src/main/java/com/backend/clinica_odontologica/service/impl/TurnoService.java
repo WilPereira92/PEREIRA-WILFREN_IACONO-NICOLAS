@@ -5,6 +5,8 @@ import com.backend.clinica_odontologica.dto.entrada.modificacion.TurnoRequestUpd
 import com.backend.clinica_odontologica.dto.salida.OdontologoResponseDto;
 import com.backend.clinica_odontologica.dto.salida.PacienteResponseDto;
 import com.backend.clinica_odontologica.dto.salida.TurnoResponseDto;
+import com.backend.clinica_odontologica.exception.BadRequestException;
+import com.backend.clinica_odontologica.exception.ResourceNotFoundException;
 import com.backend.clinica_odontologica.model.Odontologo;
 import com.backend.clinica_odontologica.model.Paciente;
 import com.backend.clinica_odontologica.model.Turno;
@@ -37,11 +39,23 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoResponseDto registrarTurno(TurnoRequestDto turnoRequestDto) {
+    public TurnoResponseDto registrarTurno(TurnoRequestDto turnoRequestDto) throws BadRequestException {
         PacienteResponseDto pacienteFindId = pacienteService.buscarPorId(turnoRequestDto.getPaciente_id());
+        OdontologoResponseDto odontologoFindId = odontologoService.buscarPorId(turnoRequestDto.getOdontologo_id());
+        if(odontologoFindId == null && pacienteFindId == null){
+            throw new BadRequestException("El odontólogo con id: " + turnoRequestDto.getOdontologo_id() + " y el paciente " +
+                    turnoRequestDto.getPaciente_id() +
+                    " no se encuentran " +
+                    "registrados en la base de datos");
+        } else if(pacienteFindId == null){
+            throw new BadRequestException("El paciente con id: " + turnoRequestDto.getPaciente_id() + " no se encuentra " +
+                    "registrado en la base de datos");
+        } else if(odontologoFindId == null) {
+            throw new BadRequestException("El odontólogo con id: " + turnoRequestDto.getOdontologo_id() + " no se encuentra " +
+                    "registrado en la base de datos");
+        }
         Paciente pacienteEntidad = pacienteService.entidadPaciente(pacienteFindId.getId());
         LOGGER.info("Paciente del turno: {}", JsonPrinter.toString(pacienteEntidad));
-        OdontologoResponseDto odontologoFindId = odontologoService.buscarPorId(turnoRequestDto.getOdontologo_id());
         Odontologo odontologoEntidad = odontologoService.entidadOdontologo(odontologoFindId.getId());
         LOGGER.info("Odontologo del turno: {}", JsonPrinter.toString(odontologoEntidad));
         Turno turnoEntidad = new Turno();
@@ -84,7 +98,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoResponseDto actualizarTurno(TurnoRequestUpdateDto turno) {
+    public TurnoResponseDto actualizarTurno(TurnoRequestUpdateDto turno) throws ResourceNotFoundException {
         TurnoResponseDto turnoResponseDto = null;
         Paciente paciente = pacienteService.entidadPaciente(turno.getPaciente_id());
         Odontologo odontologo = odontologoService.entidadOdontologo(turno.getOdontologo_id());
@@ -97,17 +111,20 @@ public class TurnoService implements ITurnoService {
             LOGGER.warn("Turno actualizado: {}", JsonPrinter.toString(turnoModified));
         } else {
             LOGGER.error("No fue posible actualizar el turno porque el mismo no se encuentra regitrado en la base de datos");
+            throw new ResourceNotFoundException("No fue posible actualizar el turno porque el mismo no se encuentra reigstrado" +
+                    " en la base de datos");
         }
         return turnoResponseDto;
     }
 
     @Override
-    public void eliminarTurno(Long id) {
+    public void eliminarTurno(Long id) throws ResourceNotFoundException {
         if (turnoRepository.findById(id).orElse(null) != null) {
             turnoRepository.deleteById(id);
             LOGGER.warn("Se eliminó el turno con el id " + id);
         } else {
             LOGGER.error("No se ha encontrado el turno con el id: " + id);
+            throw new ResourceNotFoundException("No se ha encontrado el turno con el id: " + id);
         }
     }
 }

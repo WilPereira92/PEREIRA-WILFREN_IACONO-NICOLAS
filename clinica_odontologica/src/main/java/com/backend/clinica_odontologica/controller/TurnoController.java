@@ -3,6 +3,8 @@ package com.backend.clinica_odontologica.controller;
 import com.backend.clinica_odontologica.dto.entrada.TurnoRequestDto;
 import com.backend.clinica_odontologica.dto.entrada.modificacion.TurnoRequestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.TurnoResponseDto;
+import com.backend.clinica_odontologica.exception.BadRequestException;
+import com.backend.clinica_odontologica.exception.ResourceNotFoundException;
 import com.backend.clinica_odontologica.service.ITurnoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ public class TurnoController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<TurnoResponseDto> registrarTurno(@RequestBody @Valid TurnoRequestDto turnoRequestDto) {
+    public ResponseEntity<TurnoResponseDto> registrarTurno(@RequestBody @Valid TurnoRequestDto turnoRequestDto) throws BadRequestException {
         return new ResponseEntity<>(turnoService.registrarTurno(turnoRequestDto), HttpStatus.CREATED);
     }
 
@@ -31,12 +33,12 @@ public class TurnoController {
     }
 
     @PutMapping("/actualizar")
-    public TurnoResponseDto actualizarTurno(@RequestBody @Valid TurnoRequestUpdateDto turno) {
+    public TurnoResponseDto actualizarTurno(@RequestBody @Valid TurnoRequestUpdateDto turno) throws ResourceNotFoundException {
         return turnoService.actualizarTurno(turno);
     }
 
     @DeleteMapping("/eliminar")
-    public ResponseEntity<?> eliminarTurno(@RequestParam Long id) {
+    public ResponseEntity<?> eliminarTurno(@RequestParam Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurno(id);
         return new ResponseEntity<>("Turno eliminado correctamente", HttpStatus.OK);
     }

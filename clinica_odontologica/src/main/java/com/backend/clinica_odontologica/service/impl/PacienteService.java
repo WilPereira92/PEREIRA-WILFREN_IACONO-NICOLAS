@@ -3,6 +3,7 @@ package com.backend.clinica_odontologica.service.impl;
 import com.backend.clinica_odontologica.dto.entrada.PacienteRequestDto;
 import com.backend.clinica_odontologica.dto.entrada.modificacion.PacienteResquestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.PacienteResponseDto;
+import com.backend.clinica_odontologica.exception.ResourceNotFoundException;
 import com.backend.clinica_odontologica.model.Paciente;
 import com.backend.clinica_odontologica.repository.PacienteRepository;
 import com.backend.clinica_odontologica.service.IPacienteService;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +66,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public PacienteResponseDto actualizarPaciente(PacienteResquestUpdateDto paciente) {
+    public PacienteResponseDto actualizarPaciente(PacienteResquestUpdateDto paciente) throws ResourceNotFoundException {
         LOGGER.info("Paciente PacienteRequestUpdateDto: {}", JsonPrinter.toString(paciente));
         Paciente pacienteRecibido = modelMapper.map(paciente, Paciente.class);
         LOGGER.info("Paciente a actualizar: {}", JsonPrinter.toString(pacienteRecibido));
@@ -80,18 +82,19 @@ public class PacienteService implements IPacienteService {
 
         } else {
             LOGGER.error("No fue posible actualizar el paciente porque no se encuentra en nuestra base de datos");
-            //lanzar excepcion correspondiente
+            throw new ResourceNotFoundException("No fue posible actualizar el paciente porque no se encuentra en la base de datos");
         }
         return pacienteResponseDto;
     }
 
     @Override
-    public void eliminarPaciente(Long id) {
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
         if (pacienteRepository.findById(id).orElse(null) != null) {
             pacienteRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el paciente con id: " + id);
         } else {
             LOGGER.error("No se ha encontrado el paciente con id: " + id);
+            throw new ResourceNotFoundException("No se ha encontrado el paciente con id: " + id);
         }
     }
 

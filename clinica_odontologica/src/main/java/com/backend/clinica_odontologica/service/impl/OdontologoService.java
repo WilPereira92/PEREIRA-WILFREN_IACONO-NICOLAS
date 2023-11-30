@@ -4,6 +4,7 @@ package com.backend.clinica_odontologica.service.impl;
 import com.backend.clinica_odontologica.dto.entrada.OdontologoRequestDto;
 import com.backend.clinica_odontologica.dto.entrada.modificacion.OdontologoResquestUpdateDto;
 import com.backend.clinica_odontologica.dto.salida.OdontologoResponseDto;
+import com.backend.clinica_odontologica.exception.ResourceNotFoundException;
 import com.backend.clinica_odontologica.model.Odontologo;
 import com.backend.clinica_odontologica.repository.OdontologoRepository;
 import com.backend.clinica_odontologica.service.IOdontologoService;
@@ -63,7 +64,7 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public OdontologoResponseDto actualizarOdontologo(OdontologoResquestUpdateDto odontologo) {
+    public OdontologoResponseDto actualizarOdontologo(OdontologoResquestUpdateDto odontologo) throws ResourceNotFoundException {
         LOGGER.info("Odontólogo a actualizarRequestUpdateDto: {}", JsonPrinter.toString(odontologo));
         Odontologo odontologoUpdate = modelMapper.map(odontologo, Odontologo.class);
         LOGGER.info("Odontólogo a actualizar: {}", JsonPrinter.toString(odontologoUpdate));
@@ -76,17 +77,19 @@ public class OdontologoService implements IOdontologoService {
             LOGGER.warn("Odontólogo actualizado: {}", JsonPrinter.toString(odontologoModified));
         } else {
             LOGGER.error("No fue posible actualizar el odontologo porque el mismo no se encuentra regitrado en la base de datos");
+            throw new ResourceNotFoundException("No fue posible actualizar el odontólogo porque no se encuentra en la base de datos");
         }
         return odontologoResponseDto;
     }
 
     @Override
-    public void eliminarOdontologo(Long id) {
+    public void eliminarOdontologo(Long id) throws ResourceNotFoundException {
         if (odontologoRepository.findById(id).orElse(null) != null) {
             odontologoRepository.deleteById(id);
             LOGGER.warn("Se eliminó el odontólogo con el id " + id);
         } else {
             LOGGER.error("No se ha encontrado el odontólogo con el id: " + id);
+            throw new ResourceNotFoundException("No se ha encontrado el odontólogo con id: " + id);
         }
     }
 
