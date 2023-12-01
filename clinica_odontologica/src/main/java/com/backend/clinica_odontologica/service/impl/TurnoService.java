@@ -42,15 +42,15 @@ public class TurnoService implements ITurnoService {
     public TurnoResponseDto registrarTurno(TurnoRequestDto turnoRequestDto) throws BadRequestException {
         PacienteResponseDto pacienteFindId = pacienteService.buscarPorId(turnoRequestDto.getPaciente_id());
         OdontologoResponseDto odontologoFindId = odontologoService.buscarPorId(turnoRequestDto.getOdontologo_id());
-        if(odontologoFindId == null && pacienteFindId == null){
+        if (odontologoFindId == null && pacienteFindId == null) {
             throw new BadRequestException("El odontólogo con id: " + turnoRequestDto.getOdontologo_id() + " y el paciente " +
                     turnoRequestDto.getPaciente_id() +
                     " no se encuentran " +
                     "registrados en la base de datos");
-        } else if(pacienteFindId == null){
+        } else if (pacienteFindId == null) {
             throw new BadRequestException("El paciente con id: " + turnoRequestDto.getPaciente_id() + " no se encuentra " +
                     "registrado en la base de datos");
-        } else if(odontologoFindId == null) {
+        } else if (odontologoFindId == null) {
             throw new BadRequestException("El odontólogo con id: " + turnoRequestDto.getOdontologo_id() + " no se encuentra " +
                     "registrado en la base de datos");
         }
@@ -70,6 +70,37 @@ public class TurnoService implements ITurnoService {
         TurnoResponseDto turnoSalidaDto = new TurnoResponseDto(turnoAPersistir.getId(), turnoAPersistir.getFechaYHoraTurno(), odontologoEntidad.getId(), pacienteFindId.getId());
         LOGGER.info("TurnoSalidaDto: " + JsonPrinter.toString(turnoSalidaDto));
         return turnoSalidaDto;
+
+        /*
+        Si me puede ayudar o corregir este código y me da una devolución, GENIAL.
+        Voy a dejar el otro que tenía ME DA NULLPOINTEREXCEPTION cuando seteo Odontologo.getId() y Paciente.getId()
+        Si me lo puede corregir le agradecería así termino de entenderlo :)
+        Muchísimas gracias :)
+        TurnoResponseDto turnoResponseDto = new TurnoResponseDto();
+        PacienteResponseDto pacienteFindId = pacienteService.buscarPorId(turnoRequestDto.getPaciente_id());
+        OdontologoResponseDto odontologoFindId = odontologoService.buscarPorId(turnoRequestDto.getOdontologo_id());
+        if(odontologoFindId == null && pacienteFindId == null){
+            throw new BadRequestException("El odontólogo con id: " + turnoRequestDto.getOdontologo_id() + " y el paciente " +
+                    turnoRequestDto.getPaciente_id() +
+                    " no se encuentran " +
+                    "registrados en la base de datos");
+        } else if(pacienteFindId == null){
+            throw new BadRequestException("El paciente con id: " + turnoRequestDto.getPaciente_id() + " no se encuentra " +
+                    "registrado en la base de datos");
+        } else if(odontologoFindId == null) {
+            throw new BadRequestException("El odontólogo con id: " + turnoRequestDto.getOdontologo_id() + " no se encuentra " +
+                    "registrado en la base de datos");
+        }
+        Turno turnoNuevo = turnoRepository.save(modelMapper.map(turnoRequestDto, Turno.class));
+        turnoResponseDto.setId(turnoNuevo.getId());
+        turnoResponseDto.setOdontologo_id(turnoNuevo.getOdontologo().getId());
+        AQUÍ ROMPE DA NULLPOINTEREXCEPTION PORQUE DICE QUE ODONTOLOGO ES NULO, CUANDO VOY MAS ATRAS turnoNuevo tiene el ID | odontologo | pacientes nulos pero con id-
+
+        turnoResponseDto.setPaciente_id(turnoNuevo.getPaciente().getId());
+        LOGGER.info("TurnoSalidaDto: " + JsonPrinter.toString(turnoResponseDto));
+        return turnoResponseDto;
+        PROFE NO ME FUNCIONÓ
+         */
     }
 
     @Override

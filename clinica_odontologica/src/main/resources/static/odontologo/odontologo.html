@@ -2,53 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>DentalCare - Registro Odontologo</title>
-    <link rel="stylesheet" href="./asserts/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="./asserts/styles.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
 </head>
 <body>
-    
-    <header>
-        <h1>DentalCare</h1>
-        <nav>
-            <ul>
-                <li><i class="fa-solid fa-house"></i> <p>Home</p></li>
-                <li><i class="fa-solid fa-location-dot"></i> <p>Dirección</p></li>
-                <li> <i class="fas fa-envelope"></i> <p>Contacto</p></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <p>Registrar Odontólogo</p>
-        <form action="#" method="POST">
-            <fieldset>
-                <legend>Información odontólogo</legend>
-                <section>
-                    <label for="NOMBRE">Nombre</label>
-                    <input type="text" id="NOMBRE" name="NOMBRE" placeholder="INGRESA TU NOMBRE">
-                    <small class="invisible" id="error-nombre">Nombre inválido</small>
-                </section>
-                <section>
-                    <label for="APELLIDO">Apellido</label>
-                    <input type="text" id="APELLIDO" name="APELLIDO" placeholder="INGRESA TU APELLIDO">
-                    <small class="invisible" id="error-apellido">Apellido inválido</small>
-                </section>
-                <section>
-                    <label for="MATRICULA">Matrícula</label>
-                    <input type="text" id="MATRICULA" name="MATRICULA" placeholder="INGRESA TU MATRICULA">
-                    <small class="invisible" id="error-matricula">Matrícula inválido</small>
-                </section> 
-            </fieldset>
-            <input type="submit" value="Registrar" id="submit-odontologo">
-        </form>
-        <p id="volver">VOLVER</p>
-    </main>
+<header>
+    <h1>DentalCare</h1>
+    <nav>
+        <ul>
+            <li><i class="fa-solid fa-house"></i>
+                <p>Home</p></li>
+            <li><i class="fa-solid fa-location-dot"></i>
+                <p>Dirección</p></li>
+            <li><i class="fas fa-envelope"></i>
+                <p>Contacto</p></li>
+        </ul>
+    </nav>
+</header>
 
-    <footer>
-        <p>COPYRIGHT Wilfren Pereira - Nicolas Iacono @2023</p>
-    </footer>
-        <script src="./asserts/odontologo.js"></script>
+<main>
+    <p>Registrar Odontólogo</p>
+    <form action="#" method="POST">
+        <fieldset>
+            <legend>Información odontólogo</legend>
+            <section>
+                <label for="NOMBRE">Nombre</label>
+                <input id="NOMBRE" name="NOMBRE" placeholder="INGRESA TU NOMBRE" type="text">
+                <small class="invisible" id="error-nombre">Nombre inválido</small>
+            </section>
+            <section>
+                <label for="APELLIDO">Apellido</label>
+                <input id="APELLIDO" name="APELLIDO" placeholder="INGRESA TU APELLIDO" type="text">
+                <small class="invisible" id="error-apellido">Apellido inválido</small>
+            </section>
+            <section>
+                <label for="MATRICULA">Matrícula</label>
+                <input id="MATRICULA" name="MATRICULA" placeholder="INGRESA TU MATRICULA" type="text">
+                <small class="invisible" id="error-matricula">Matrícula inválido</small>
+            </section>
+        </fieldset>
+        <input id="submit-odontologo" type="submit" value="Registrar">
+    </form>
+    <p id="volver">VOLVER</p>
+</main>
+
+<footer>
+    <p>COPYRIGHT Wilfren Pereira - Nicolas Iacono @2023</p>
+</footer>
+<script src="./asserts/odontologo.js"></script>
 </body>
 </html>

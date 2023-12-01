@@ -2,57 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>DentalCare - AgendarTurno</title>
-    <link rel="stylesheet" href="./asserts/turno.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="./asserts/turno.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <h1>DentalCare</h1>
-        <nav>
-            <ul>
-                <li><i class="fa-solid fa-house"></i> <p>Home</p></li>
-                <li><i class="fa-solid fa-location-dot"></i> <p>Dirección</p></li>
-                <li> <i class="fas fa-envelope"></i> <p>Contacto</p></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <p>Registrar Turno</p>
-        <form action="#" method="POST">
-            <fieldset>
-                <legend>Información Turno</legend>
-                <section>
-                    <label for="odontologo_id">ID Odontólogo</label>
-                    <input type="text" id="odontologo_id" name="ODONTOLOGO_ID" placeholder="INGRESA ID DEL ODONTÓLOGO">
-                    <small class="invisible" id="error-idOdontologo">id inválido</small>
-                </section>
-                <section>
-                    <label for="paciente_id">ID Paciente</label>
-                    <input type="text" id="paciente_id" name="paciente_id" placeholder="INGRESA ID DEL PACIENTE">
-                    <small class="invisible" id="error-idPaciente">id inválido</small>
-                </section>
-                <section>
-                    <label for="fecha">Fecha turno</label>
-                    <input type="text" id="fecha_turno" name="fecha_turno" placeholder="INGRESA FECHA DEL TURNO">
-                    <small class="invisible" id="error-matricula">fecha inválida</small>
-                </section> 
-            </fieldset>
-            <input type="submit" value="Registrar" id="submit-turno">
-        </form>
-        <div class="turnos">
-            <p>No se encuentran turnos registrados</p>
-            <div id="inyeccion-turnos">
-            </div>
+<header>
+    <h1>DentalCare</h1>
+    <nav>
+        <ul>
+            <li><i class="fa-solid fa-house"></i>
+                <p>Home</p></li>
+            <li><i class="fa-solid fa-location-dot"></i>
+                <p>Dirección</p></li>
+            <li><i class="fas fa-envelope"></i>
+                <p>Contacto</p></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <p>Registrar Turno</p>
+    <form action="#" method="POST">
+        <fieldset>
+            <legend>Información Turno</legend>
+            <section>
+                <label for="odontologo_id">ID Odontólogo</label>
+                <input id="odontologo_id" name="ODONTOLOGO_ID" placeholder="INGRESA ID DEL ODONTÓLOGO" type="text">
+                <small class="invisible" id="error-idOdontologo">id inválido</small>
+            </section>
+            <section>
+                <label for="paciente_id">ID Paciente</label>
+                <input id="paciente_id" name="paciente_id" placeholder="INGRESA ID DEL PACIENTE" type="text">
+                <small class="invisible" id="error-idPaciente">id inválido</small>
+            </section>
+            <section>
+                <label for="fecha">Fecha turno</label>
+                <input id="fecha_turno" name="fecha_turno" placeholder="INGRESA FECHA DEL TURNO" type="text">
+                <small class="invisible" id="error-matricula">fecha inválida</small>
+            </section>
+        </fieldset>
+        <input id="submit-turno" type="submit" value="Registrar">
+    </form>
+    <div class="turnos">
+        <p>No se encuentran turnos registrados</p>
+        <div id="inyeccion-turnos">
         </div>
-        <p id="volver">VOLVER</p>
-    </main>
+    </div>
+    <p id="volver">VOLVER</p>
+</main>
 
-    <footer>
-        <p>COPYRIGHT Wilfren Pereira @2023</p>
-    </footer>
+<footer>
+    <p>COPYRIGHT Wilfren Pereira @2023</p>
+</footer>
 
-    <script src="./asserts/turno.js"></script>
+<script src="./asserts/turno.js"></script>
 </body>
 </html>
